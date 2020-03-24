@@ -10,7 +10,7 @@ Contributions on phase2:
 
 **Fowzan Alhantoshi** worked On: Abstract, Introduction, Definitions, References, Overview, Class method description and conclusion.
 
-**Mohammad Alkhalifah** worked On: 
+**Mohammad Alkhalifah** worked On: Class diagram, flowchart
 
 **Khaled Almodameeg** worked On: 
 
