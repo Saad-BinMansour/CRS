@@ -2,6 +2,7 @@
 
 Computer Recommendtion Software For CS310 Project Group 'G' 
 
+This is the develop branch
 
 -----------------------------------------------------------------
 Contributions on phase2:
