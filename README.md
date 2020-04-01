@@ -12,7 +12,7 @@ Contributions on phase2:
 
 **Mohammad Alkhalifah** worked On: Class diagram, flowchart, state diagram
 
-**Khaled Almodameeg** worked On: 
+**Khaled Almodameeg** worked On: Definitions,  Class method description.
 
 **Tareq Alagel** worked On: 
 
