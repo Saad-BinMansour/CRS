@@ -18,4 +18,9 @@ public class SettingsActivity extends AppCompatActivity {
         Intent intent=new Intent(this,MainActivity.class);
         startActivity(intent);
     }
+
+    public void bookmarkbutton(View view) {
+        Intent intent=new Intent(this,BookmarkActivity.class);
+        startActivity(intent);
+    }
 }

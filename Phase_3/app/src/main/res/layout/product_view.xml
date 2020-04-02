@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layout_stroke">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/img_prod_ex"
+            android:id="@+id/product_img"/>
+
+        <TextView
+            android:layout_width="260dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/nam_prod_ex"
+            android:id="@+id/product_name"
+            android:layout_toRightOf="@+id/product_img"
+            android:text="HP Pavilion x360 15.6&#34; HD 2 in 1 Touchscreen Laptop Home and Business Notebook Core i5-8265U, 12GB RAM, 512GB SSD, Quad-Core up to 3.90 GHz, USB-C, UHD Graphics 620, Keypad, WebCam, Win 10"
+            android:textSize="12.5sp"
+            android:textStyle="bold"
+            android:textColor="#000"/>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="5dp"
+            android:id="@+id/bookmark"
+            android:src="@drawable/tobookmark_ic"
+            android:layout_toRightOf="@id/product_name"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/product_name"
+            android:layout_marginLeft="137dp"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@id/product_img"
+            android:text="SAR"
+            android:textSize="16sp"
+            android:textColor="#17789F" />
+
+        <TextView
+            android:id="@+id/product_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/product_name"
+            android:layout_marginLeft="95dp"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@id/product_img"
+            android:textSize="16sp"
+            android:text="2450"
+            android:textColor="#17789F" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="60dp"
+            android:layout_below="@id/product_name"
+            android:layout_toRightOf="@id/product_price"
+            android:text="Go To:"
+            android:textSize="16sp"
+            android:id="@+id/gototext"
+            android:textColor="#595555"/>
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="19dp"
+            android:src="@drawable/newegg_ic"
+            android:layout_toRightOf="@id/gototext"
+            android:layout_below="@id/product_name"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="5dp"/>
+
+
+
+    </RelativeLayout>
+
+</LinearLayout>
