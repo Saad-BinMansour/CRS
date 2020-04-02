@@ -67,7 +67,7 @@
                         android:src="@drawable/qu1"
                         android:id="@+id/qu1"
                         android:layout_toRightOf="@id/num1"
-                        android:layout_marginLeft="20dp"></ImageView>
+                        android:layout_marginLeft="20dp" />
 
                     <!-- Choice Laptop -->
                     <ImageView
@@ -287,9 +287,7 @@
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/qu4"
-                        android:layout_marginLeft="60dp"
-
-                        android:background="@drawable/top_rectangle"></org.florescu.android.rangeseekbar.RangeSeekBar>
+                        android:layout_marginLeft="60dp"></org.florescu.android.rangeseekbar.RangeSeekBar>
                 </RelativeLayout>
 
 
@@ -314,7 +312,8 @@
                 android:layout_marginLeft="45dp"
                 android:layout_marginRight="90dp"
                 android:layout_marginTop="11dp"
-                android:src="@drawable/wheelicon"></ImageView>
+                android:src="@drawable/wheelicon"
+                android:onClick="settingsButton"></ImageView>
 
             <ImageView
                 android:layout_width="45dp"
