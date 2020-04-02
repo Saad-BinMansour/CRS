@@ -45,8 +45,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:layout_marginTop="50dp"
-                android:layout_marginLeft="30dp">
+                android:paddingTop="50dp"
+                android:paddingLeft="30dp">
 
                 <!--Question 1 With Choices -->
                 <RelativeLayout
@@ -261,6 +261,35 @@
                     android:layout_toRightOf="@id/performance_rad"
                     android:layout_marginLeft="70dp"
                     android:id="@+id/portability_rad"></RadioButton>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp">
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/num4"
+                    android:id="@+id/num4"></ImageView>
+
+                <ImageView
+                    android:id="@+id/qu4"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@id/num4"
+                    android:src="@drawable/qu4"></ImageView>
+
+                    <org.florescu.android.rangeseekbar.RangeSeekBar
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/qu4"
+                        android:layout_marginLeft="60dp"
+
+                        android:background="@drawable/top_rectangle"></org.florescu.android.rangeseekbar.RangeSeekBar>
                 </RelativeLayout>
 
 
