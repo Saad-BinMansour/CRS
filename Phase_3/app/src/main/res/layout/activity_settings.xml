@@ -44,8 +44,8 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_marginTop="11dp"
-            android:src="@drawable/homepage_ic_noncolor"
-            android:onClick="homebutton"></ImageView>
+            android:onClick="homebutton"
+            android:src="@drawable/homepage_ic_noncolor"></ImageView>
 
         <ImageView
             android:layout_width="45dp"
@@ -56,7 +56,50 @@
             android:src="@drawable/hearticon"></ImageView>
     </LinearLayout>
 
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="46dp"
+        android:src="@drawable/notifications_ic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"></ImageView>
 
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="315dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="47dp"
+        android:layout_marginEnd="31dp"
+        android:switchTextAppearance="@style/TextAppearance.AppCompat.Small"
+        android:text="Notifications"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="116dp"
+        android:src="@drawable/darkmode_ic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"></ImageView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Switch
+        android:id="@+id/switch2"
+        android:layout_width="315dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="31dp"
+        android:text="Dark Mode"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch1" />
+
