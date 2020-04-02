@@ -1,10 +1,10 @@
 package com.example.crs.model.item;
 
-public enum ComputerItemType {
+public enum ItemType {
     NOTEBOOK, ULTRABOOK, CHROMEBOOK, MACBOOK, CONVERTIBLE, TABLET;
 
-    public String getComputerTypeString(ComputerItemType computerItemType) {
-        switch (computerItemType) {
+    public String getComputerTypeString(ItemType itemType) {
+        switch (itemType) {
             case TABLET:
                 return "Tablet";
 

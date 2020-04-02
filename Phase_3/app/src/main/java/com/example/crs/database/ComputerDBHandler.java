@@ -7,15 +7,15 @@ import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.Nullable;
 
-import com.example.crs.model.item.ComputerItem;
-import com.example.crs.model.item.ComputerItemType;
+import com.example.crs.model.item.Itemable;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public final class ComputerDBHandler<T extends ComputerItem, E extends ComputerItemType> extends MyDBHandler<T, E> {
+public final class ComputerDBHandler<T extends Itemable> extends MyDBHandler<T> {
+    private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "ComputerDB.db";
     private static final String TABLE_NAME = "Computer";
     private static final String COLUMN_ID = "ComputerID";
@@ -39,7 +39,8 @@ public final class ComputerDBHandler<T extends ComputerItem, E extends ComputerI
         if (cursor.moveToFirst()) {
             do {
                 byte[] computerData_1 = cursor.getBlob(1);
-                data.add((T) new Gson().fromJson(new String(computerData_1), new TypeToken<T>(){}.getType()));
+                T temp = new Gson().fromJson(new String(computerData_1), new TypeToken<T>(){}.getType());
+                data.add(temp);
             } while (cursor.moveToNext());
             cursor.close();
         }
@@ -54,13 +55,13 @@ public final class ComputerDBHandler<T extends ComputerItem, E extends ComputerI
         values.put(COLUMN_COMPUTER, new Gson().toJson(data).getBytes());
         values.put(COLUMN_NAME, data.getName());
         values.put(COLUMN_MODEL, data.getModel());
-        values.put(COLUMN_URL, data.getUrl());
-        values.put(COLUMN_TYPE, data.getComputerItemType().getComputerTypeString(data.getComputerItemType()));
+        values.put(COLUMN_URL, data.getURL());
+        values.put(COLUMN_TYPE, data.getItemType().getComputerTypeString(data.getItemType()));
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(TABLE_NAME, null, values);
         Cursor cursor = db.rawQuery("Select*FROM " + TABLE_NAME, null);
         cursor.moveToLast();
-        data.setId(cursor.getInt(0));
+        data.setID(cursor.getInt(0));
         cursor.close();
         db.close();
     }
@@ -75,7 +76,8 @@ public final class ComputerDBHandler<T extends ComputerItem, E extends ComputerI
         if (cursor.moveToFirst()) {
             do {
                 byte[] computerData_1 = cursor.getBlob(1);
-                data.add((T) new Gson().fromJson(new String(computerData_1), new TypeToken<T>(){}.getType()));
+                T temp = new Gson().fromJson(new String(computerData_1), new TypeToken<T>(){}.getType());
+                data.add(temp);
             } while (cursor.moveToNext());
             cursor.close();
         }

@@ -7,9 +7,7 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
-public abstract class MyDBHandler<T,E> extends SQLiteOpenHelper {
-    protected static final int DATABASE_VERSION = 1;
-
+public abstract class MyDBHandler<T> extends SQLiteOpenHelper {
     public MyDBHandler(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
