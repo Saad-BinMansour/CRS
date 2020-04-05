@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
@@ -14,32 +15,32 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public final class ComputerDBHandler<T extends Itemable> extends MyDBHandler<T> {
+public final class ComputerDBHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "ComputerDB.db";
     private static final String TABLE_NAME = "Computer";
-    private static final String COLUMN_ID = "ComputerID";
-    private static final String COLUMN_COMPUTER = "ComputerData";
-    private static final String COLUMN_NAME = "ComputerName";
-    private static final String COLUMN_MODEL = "ComputerModel";
-    private static final String COLUMN_URL = "ComputerURL";
-    private static final String COLUMN_TYPE = "ComputerType";
+    private enum Column {
+        ID(0), COMPUTER_DATA(1), NAME(2), MODEL(3), URL(4), ITEM_TYPE(5), BOOKMARKED(6);
+        int columnNumber;
+        Column(int i) {
+            this.columnNumber = i;
+        }
+    }
 
-    public ComputerDBHandler(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+    public ComputerDBHandler(@Nullable Context context, @Nullable SQLiteDatabase.CursorFactory factory) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
 
     // Load all the data
-    @Override
-    public ArrayList<T> loadHandler() {
-        LinkedList<T> data = new LinkedList<>();
+    public ArrayList<Itemable> loadHandler() {
+        LinkedList<Itemable> data = new LinkedList<>();
         String query = "Select*FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             do {
-                byte[] computerData_1 = cursor.getBlob(1);
-                T temp = new Gson().fromJson(new String(computerData_1), new TypeToken<T>(){}.getType());
+                byte[] computerData_1 = cursor.getBlob(Column.COMPUTER_DATA.columnNumber);
+                Itemable temp = new Gson().fromJson(new String(computerData_1), new TypeToken<Itemable>(){}.getType());
                 data.add(temp);
             } while (cursor.moveToNext());
             cursor.close();
@@ -49,34 +50,35 @@ public final class ComputerDBHandler<T extends Itemable> extends MyDBHandler<T> 
     }
 
     // Add a data into the database
-    @Override
-    public void addHandler(T data) {
+    public void addHandler(Itemable data) {
         ContentValues values = new ContentValues();
-        values.put(COLUMN_COMPUTER, new Gson().toJson(data).getBytes());
-        values.put(COLUMN_NAME, data.getName());
-        values.put(COLUMN_MODEL, data.getModel());
-        values.put(COLUMN_URL, data.getURL());
-        values.put(COLUMN_TYPE, data.getItemType().getComputerTypeString(data.getItemType()));
+        values.put(Column.COMPUTER_DATA.name(), new Gson().toJson(data).getBytes());
+        values.put(Column.NAME.name(), data.getName());
+        values.put(Column.MODEL.name(), data.getModel());
+        values.put(Column.URL.name(), data.getURL());
+        values.put(Column.ITEM_TYPE.name(), data.getItemType().getComputerTypeString(data.getItemType()));
+
+        // Setting the last ID to the inserted data
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(TABLE_NAME, null, values);
         Cursor cursor = db.rawQuery("Select*FROM " + TABLE_NAME, null);
         cursor.moveToLast();
-        data.setID(cursor.getInt(0));
+        data.setID(cursor.getInt(Column.ID.columnNumber));
+
         cursor.close();
         db.close();
     }
 
     // Find an item from the database
-    @Override
-    public ArrayList<T> findHandler(String name) {
-        LinkedList<T> data = new LinkedList<>();
-        String query = "Select * FROM " + TABLE_NAME + "WHERE " + COLUMN_NAME + " = " + "'" + name + "'";
+    public ArrayList<Itemable> findHandler(String name) {
+        LinkedList<Itemable> data = new LinkedList<>();
+        String query = "Select * FROM " + TABLE_NAME + "WHERE " + Column.NAME.name() + " = " + "'" + name + "'";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             do {
-                byte[] computerData_1 = cursor.getBlob(1);
-                T temp = new Gson().fromJson(new String(computerData_1), new TypeToken<T>(){}.getType());
+                byte[] computerData_1 = cursor.getBlob(Column.COMPUTER_DATA.columnNumber);
+                Itemable temp = new Gson().fromJson(new String(computerData_1), new TypeToken<Itemable>(){}.getType());
                 data.add(temp);
             } while (cursor.moveToNext());
             cursor.close();
@@ -88,9 +90,10 @@ public final class ComputerDBHandler<T extends Itemable> extends MyDBHandler<T> 
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME +
-                "(" + COLUMN_ID + "INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," + COLUMN_COMPUTER + "BLOB," +
-                COLUMN_NAME + "TEXT," + COLUMN_MODEL + "TEXT," +
-                COLUMN_URL + "TEXT," + COLUMN_TYPE + "TEXT )";
+                "(" + Column.ID.name() + "INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
+                + Column.COMPUTER_DATA.name() + "BLOB," + Column.NAME.name() + "TEXT,"
+                + Column.MODEL.name() + "TEXT," + Column.URL.name() + "TEXT,"
+                + Column.ITEM_TYPE.name() + "TEXT " + Column.BOOKMARKED.name() + "TEXT )";
         db.execSQL(CREATE_TABLE);
     }
 
