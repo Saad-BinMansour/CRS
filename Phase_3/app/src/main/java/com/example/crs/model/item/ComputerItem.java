@@ -4,8 +4,8 @@ import android.graphics.Bitmap;
 
 import com.example.crs.model.generic.CPU;
 import com.example.crs.model.generic.GPU;
+import com.example.crs.model.generic.InternalMemory;
 import com.example.crs.model.generic.RAM;
-import com.example.crs.model.generic.internalmemory.*;
 import com.example.crs.model.laptop.*;
 
 public final class ComputerItem implements Itemable {
@@ -18,34 +18,14 @@ public final class ComputerItem implements Itemable {
     private CPU cpu;
     private GPU gpu;
     private RAM ram;
-    private HDD hdd;
-    private SSD ssd;
-    private M2Drive m2Drive;
+    private InternalMemory hdd;
+    private InternalMemory ssd;
+    private InternalMemory m2Drive;
     private float price;
     private ItemType itemType;
-    private Bitmap bitmap;
+    private String imageLink;
 
     public ComputerItem() {
-    }
-
-    public ComputerItem(int id, String name, String model, String url, Display display,
-                        Battery battery, CPU cpu, GPU gpu, RAM ram, HDD hdd, SSD ssd,
-                        M2Drive m2Drive, float price, ItemType itemType, Bitmap bitmap) {
-        this.id = id;
-        this.name = name;
-        this.model = model;
-        this.url = url;
-        this.display = display;
-        this.battery = battery;
-        this.cpu = cpu;
-        this.gpu = gpu;
-        this.ram = ram;
-        this.hdd = hdd;
-        this.ssd = ssd;
-        this.m2Drive = m2Drive;
-        this.price = price;
-        this.itemType = itemType;
-        this.bitmap = bitmap;
     }
 
     public Display getDisplay() {
@@ -88,30 +68,6 @@ public final class ComputerItem implements Itemable {
         this.ram = ram;
     }
 
-    public HDD getHdd() {
-        return hdd;
-    }
-
-    public void setHdd(HDD hdd) {
-        this.hdd = hdd;
-    }
-
-    public SSD getSsd() {
-        return ssd;
-    }
-
-    public void setSsd(SSD ssd) {
-        this.ssd = ssd;
-    }
-
-    public M2Drive getM2Drive() {
-        return m2Drive;
-    }
-
-    public void setM2Drive(M2Drive m2Drive) {
-        this.m2Drive = m2Drive;
-    }
-
     public float getPrice() {
         return price;
     }
@@ -120,12 +76,36 @@ public final class ComputerItem implements Itemable {
         this.price = price;
     }
 
-    public Bitmap getBitmap() {
-        return bitmap;
+    public InternalMemory getHdd() {
+        return hdd;
     }
 
-    public void setBitmap(Bitmap bitmap) {
-        this.bitmap = bitmap;
+    public void setHdd(InternalMemory hdd) {
+        this.hdd = hdd;
+    }
+
+    public InternalMemory getSsd() {
+        return ssd;
+    }
+
+    public void setSsd(InternalMemory ssd) {
+        this.ssd = ssd;
+    }
+
+    public InternalMemory getM2Drive() {
+        return m2Drive;
+    }
+
+    public void setM2Drive(InternalMemory m2Drive) {
+        this.m2Drive = m2Drive;
+    }
+
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 
     @Override
@@ -175,6 +155,13 @@ public final class ComputerItem implements Itemable {
 
     @Override
     public void setItemType(ItemType itemType) {
+        if (!itemType.equals(ItemType.ULTRABOOK) && !itemType.equals(ItemType.NOTEBOOK) && !itemType.equals(ItemType.CHROMEBOOK)
+                && !itemType.equals(ItemType.MACBOOK) && !itemType.equals(ItemType.CONVERTIBLE)
+                && !itemType.equals(ItemType.TABLET)) {
+            throw new IllegalArgumentException("Wrong Item type. Must be NOTEBOOK, ULTRABOOK, CHROMEBOOK" +
+                    ", MACBOOK, CONVERTIBLE, TABLET");
+        }
+
         this.itemType = itemType;
     }
 
@@ -195,7 +182,7 @@ public final class ComputerItem implements Itemable {
                 ", m2Drive=" + m2Drive +
                 ", price=" + price +
                 ", itemType=" + itemType +
-                ", bitmap=" + bitmap +
+                ", imageLink='" + imageLink + '\'' +
                 '}';
     }
 }

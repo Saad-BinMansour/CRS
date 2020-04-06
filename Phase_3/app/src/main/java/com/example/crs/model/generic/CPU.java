@@ -12,22 +12,9 @@ public final class CPU {
     private float operatingFrequency;
     private float maxTurboBoost;
     private float price;
-    private Bitmap image;
+    private String imageLink;
 
     public CPU() {
-    }
-
-    public CPU(String name, String model, SocketType socketType, int numberOfCores, int numberOfThreads, int thermalDesign, float operatingFrequency, float maxTurboBoost, float price, Bitmap image) {
-        this.name = name;
-        this.model = model;
-        this.socketType = socketType;
-        this.numberOfCores = numberOfCores;
-        this.numberOfThreads = numberOfThreads;
-        this.thermalDesign = thermalDesign;
-        this.operatingFrequency = operatingFrequency;
-        this.maxTurboBoost = maxTurboBoost;
-        this.price = price;
-        this.image = image;
     }
 
     public float getPrice() {
@@ -38,12 +25,12 @@ public final class CPU {
         this.price = price;
     }
 
-    public Bitmap getImage() {
-        return image;
+    public String getImageLink() {
+        return imageLink;
     }
 
-    public void setImage(Bitmap image) {
-        this.image = image;
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 
     public String getName() {

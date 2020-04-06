@@ -19,6 +19,7 @@ public final class ComputerDBHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "ComputerDB.db";
     private static final String TABLE_NAME = "Computer";
+
     private enum Column {
         ID(0), COMPUTER_DATA(1), NAME(2), MODEL(3), URL(4), ITEM_TYPE(5), BOOKMARKED(6);
         int columnNumber;
@@ -56,7 +57,7 @@ public final class ComputerDBHandler extends SQLiteOpenHelper {
         values.put(Column.NAME.name(), data.getName());
         values.put(Column.MODEL.name(), data.getModel());
         values.put(Column.URL.name(), data.getURL());
-        values.put(Column.ITEM_TYPE.name(), data.getItemType().getComputerTypeString(data.getItemType()));
+        values.put(Column.ITEM_TYPE.name(), data.getItemType().name());
 
         // Setting the last ID to the inserted data
         SQLiteDatabase db = this.getWritableDatabase();

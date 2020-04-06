@@ -9,19 +9,9 @@ public final class GPU {
     private float length;
     private float height;
     private float price;
-    private Bitmap image;
+    private String imageLink;
 
     public GPU() {
-    }
-
-    public GPU(String name, String model, int memorySize, float length, float height, float price, Bitmap image) {
-        this.name = name;
-        this.model = model;
-        this.memorySize = memorySize;
-        this.length = length;
-        this.height = height;
-        this.price = price;
-        this.image = image;
     }
 
     public String getName() {
@@ -72,12 +62,12 @@ public final class GPU {
         this.price = price;
     }
 
-    public Bitmap getImage() {
-        return image;
+    public String getImageLink() {
+        return imageLink;
     }
 
-    public void setImage(Bitmap image) {
-        this.image = image;
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 
     @Override
@@ -89,7 +79,7 @@ public final class GPU {
                 ", length=" + length +
                 ", height=" + height +
                 ", price=" + price +
-                ", image=" + image +
+                ", imageLink='" + imageLink + '\'' +
                 '}';
     }
 }

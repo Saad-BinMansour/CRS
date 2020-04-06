@@ -9,19 +9,9 @@ public final class RAM {
     private int speed;
     private int CASLatency;
     private float price;
-    private Bitmap bitmap;
+    private String imageLink;
 
     public RAM() {
-    }
-
-    public RAM(String name, String model, int capacity, int speed, int CASLatency, float price, Bitmap bitmap) {
-        this.name = name;
-        this.model = model;
-        this.capacity = capacity;
-        this.speed = speed;
-        this.CASLatency = CASLatency;
-        this.price = price;
-        this.bitmap = bitmap;
     }
 
     public String getName() {
@@ -72,12 +62,12 @@ public final class RAM {
         this.price = price;
     }
 
-    public Bitmap getBitmap() {
-        return bitmap;
+    public String getImageLink() {
+        return imageLink;
     }
 
-    public void setBitmap(Bitmap bitmap) {
-        this.bitmap = bitmap;
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 
     @Override
@@ -89,7 +79,7 @@ public final class RAM {
                 ", speed=" + speed +
                 ", CASLatency=" + CASLatency +
                 ", price=" + price +
-                ", bitmap=" + bitmap +
+                ", imageLink='" + imageLink + '\'' +
                 '}';
     }
 }
