@@ -30,31 +30,32 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout2"
         android:paddingStart="15dp"
-        android:paddingTop="25dp">
+        android:paddingTop="25dp"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout2"
+        tools:ignore="MissingConstraints">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Who Are We ?"
-            android:textSize="25sp"
             android:fontFamily="@font/britanic_bold"
-            android:textColor="#1a4c65"/>
+            android:textColor="#1a4c65"
+            android:textSize="25sp" />
 
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_gravity="bottom"
         android:background="@drawable/bottom_rectangle"
-        android:orientation="horizontal"
         android:onClick="bookmarkbutton"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="MissingConstraints">
 
@@ -82,5 +83,39 @@
             android:layout_marginRight="25dp"
             android:src="@drawable/hearticon"></ImageView>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="352dp"
+        android:layout_height="482dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif"
+        android:text="With CRS, it’s easy to find the right components for your PC based on your needs.
+There are thousands of products on CRS. So whether you’re an engineer, gamer, designer or student, the right products are always at your fingertips.
+Choose what you want to use, or let CRS surprise you.  You can also browse by using a filter.
+Let CRS choose for you and Enjoy it."
+        android:textColor="#1a4c65"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="378dp"
+        android:layout_height="46dp"
+        android:fontFamily="sans-serif"
+        android:text="Est. 2020"
+        android:textColor="#1a4c65"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
