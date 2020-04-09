@@ -1,4 +1,4 @@
-package com.example.crs;
+package com.example.crs.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.appyvet.materialrangebar.RangeBar;
 import com.stfalcon.pricerangebar.RangeBarWithChart;
+
+import com.example.crs.R;
 
 public class MainActivity extends AppCompatActivity {
 
