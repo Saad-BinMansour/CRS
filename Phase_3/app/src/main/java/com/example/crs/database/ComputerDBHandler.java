@@ -92,7 +92,7 @@ public final class ComputerDBHandler extends SQLiteOpenHelper {
     // Find an item from the database
     public ArrayList<Item> findHandler(String name) {
         LinkedList<Item> data = new LinkedList<>();
-        String query = "Select * FROM " + TABLE_NAME + " WHERE " + Column.NAME.name() + " = " + "'" + name + "'";
+        String query = "Select * FROM " + TABLE_NAME + " WHERE " + Column.NAME.name() + " LIKE " + "'%" + name + "%'";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
