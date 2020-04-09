@@ -10,7 +10,6 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.appyvet.materialrangebar.RangeBar;
-import com.stfalcon.pricerangebar.RangeBarWithChart;
 
 import com.example.crs.R;
 
@@ -124,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void settingsButton(View view) {
-        Intent intent =new Intent(this,SettingsActivity.class);
+        Intent intent =new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 
