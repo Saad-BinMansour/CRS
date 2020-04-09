@@ -17,6 +17,9 @@ public final class ComputerItem extends Item {
     private InternalMemory ssd;
     private InternalMemory m2Drive;
 
+    public ComputerItem() {
+    }
+
     public ComputerItem(String name, String model, String url, float price, ItemType itemType, String imageLink) {
         super(name, model, url, price, itemType, imageLink);
 

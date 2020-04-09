@@ -8,6 +8,9 @@ public final class InternalMemory extends Item {
     private int capacity;
     private int amount;
 
+    public InternalMemory() {
+    }
+
     public InternalMemory(String name, String model, String url, float price, ItemType itemType, String imageLink) {
         super(name, model, url, price, itemType, imageLink);
 

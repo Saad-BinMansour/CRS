@@ -8,6 +8,9 @@ public final class RAM extends Item {
     private int speed;
     private int CASLatency;
 
+    public RAM() {
+    }
+
     public RAM(String name, String model, String url, float price, ItemType itemType, String imageLink) {
         super(name, model, url, price, itemType, imageLink);
 

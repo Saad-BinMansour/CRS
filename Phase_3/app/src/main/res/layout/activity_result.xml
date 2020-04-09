@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ResultActivity">
+    tools:context=".activities.ResultActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -30,21 +30,14 @@
 
     </LinearLayout>
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/result_listview"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout2">
-
-    </ListView>
-
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_gravity="bottom"
         android:background="@drawable/bottom_rectangle"
-        android:orientation="horizontal"
         android:onClick="bookmarkbutton"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="MissingConstraints">
 
@@ -72,5 +65,14 @@
             android:layout_marginRight="25dp"
             android:src="@drawable/hearticon"></ImageView>
     </LinearLayout>
+
+    <ListView
+        android:id="@+id/result_listview"
+        android:layout_width="409dp"
+        android:layout_height="599dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

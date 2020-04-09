@@ -11,6 +11,9 @@ public final class CPU extends Item {
     private float operatingFrequency;
     private float maxTurboBoost;
 
+    public CPU() {
+    }
+
     public CPU(String name, String model, String url, float price, ItemType itemType, String imageLink) {
         super(name, model, url, price, itemType, imageLink);
 

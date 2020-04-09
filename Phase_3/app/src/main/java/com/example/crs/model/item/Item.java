@@ -10,6 +10,9 @@ public abstract class Item {
     private ItemType itemType;
     private String imageLink;
 
+    public Item() {
+    }
+
     public Item(String name, String model, String url, float price, ItemType itemType, String imageLink) {
         this.id = DEFAULT_ID;
         this.name = name;
