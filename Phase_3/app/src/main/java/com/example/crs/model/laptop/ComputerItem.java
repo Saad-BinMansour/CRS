@@ -1,10 +1,11 @@
-package com.example.crs.model.item;
+package com.example.crs.model.laptop;
 
 import com.example.crs.model.generic.CPU;
 import com.example.crs.model.generic.GPU;
 import com.example.crs.model.generic.InternalMemory;
 import com.example.crs.model.generic.RAM;
-import com.example.crs.model.laptop.*;
+import com.example.crs.model.item.Item;
+import com.example.crs.model.item.ItemType;
 
 public final class ComputerItem extends Item {
     private Display display;
