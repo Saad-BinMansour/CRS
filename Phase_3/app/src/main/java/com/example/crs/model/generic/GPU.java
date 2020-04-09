@@ -8,6 +8,9 @@ public final class GPU extends Item {
     private float length;
     private float height;
 
+    public GPU() {
+    }
+
     public GPU(String name, String model, String url, float price, ItemType itemType, String imageLink) {
         super(name, model, url, price, itemType, imageLink);
 

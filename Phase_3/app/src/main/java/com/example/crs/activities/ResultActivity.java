@@ -5,15 +5,35 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 
 import com.example.crs.R;
+import com.example.crs.database.ComputerDBHandler;
 
 public class ResultActivity extends AppCompatActivity {
+    private CustomAdapter customAdapter;
+    private ComputerDBHandler computerDBHandler;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+
+        listView = findViewById(R.id.result_listview);
+        computerDBHandler = new ComputerDBHandler(this, null);
+
+        Intent intent = getIntent();
+        String searchName = intent.getExtras().getString("SearchItemsName");
+        getSearchItems(searchName);
+    }
+
+    private void getSearchItems(String searchItem) {
+        if (searchItem != null) {
+            customAdapter =
+                    new CustomAdapter(this, R.layout.product_view, computerDBHandler.findHandler("MSI GE65 Raider-432"));
+            listView.setAdapter(customAdapter);
+        }
     }
 
     public void homebutton(View view) {
