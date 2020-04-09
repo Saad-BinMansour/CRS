@@ -8,12 +8,12 @@ import android.view.View;
 
 import com.example.crs.R;
 
-public class SettingsActivity extends AppCompatActivity {
+public class Aboutus extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_aboutus);
     }
 
     public void homebutton(View view) {
@@ -21,13 +21,13 @@ public class SettingsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void bookmarkbutton(View view) {
-        Intent intent=new Intent(this, BookmarkActivity.class);
+    public void settingsButton(View view) {
+        Intent intent=new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 
-    public void AboutUsbutton(View view) {
-        Intent intent=new Intent(this, Aboutus.class);
+    public void bookmarkbutton(View view) {
+        Intent intent=new Intent(this,BookmarkActivity.class);
         startActivity(intent);
     }
 }

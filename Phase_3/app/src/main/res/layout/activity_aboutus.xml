@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.ResultActivity">
+    tools:context=".activities.Aboutus">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:background="@drawable/top_rectangle"
-        android:orientation="horizontal"
         android:visibility="visible"
         tools:ignore="MissingConstraints">
 
@@ -20,23 +19,15 @@
             android:layout_height="59dp"
             android:layout_marginTop="2dp"
             android:src="@drawable/crs_logo" />
-
         <ImageView
-            android:layout_width="250dp"
+            android:layout_width="160dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="30dp"
-            android:src="@drawable/bestrecotext" />
+            android:layout_marginLeft="50dp"
+            android:layout_marginBottom="7dp"
+            android:src="@drawable/settings" />
 
     </LinearLayout>
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/result_listview"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout2">
-
-    </ListView>
 
     <LinearLayout
         android:layout_width="match_parent"

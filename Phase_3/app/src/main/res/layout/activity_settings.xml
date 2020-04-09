@@ -127,7 +127,8 @@
             android:orientation="horizontal"
             android:paddingTop="25dp"
             android:paddingBottom="25dp"
-            android:background="@drawable/layout_stroke">
+            android:background="@drawable/layout_stroke"
+            android:onClick="AboutUsbutton">
 
             <ImageView
                 android:layout_width="40dp"
