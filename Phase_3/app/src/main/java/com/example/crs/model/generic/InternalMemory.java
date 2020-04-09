@@ -1,21 +1,20 @@
 package com.example.crs.model.generic;
 
-import android.graphics.Bitmap;
-
+import com.example.crs.model.item.Item;
 import com.example.crs.model.item.ItemType;
-import com.example.crs.model.item.Itemable;
 
-public final class InternalMemory implements Itemable {
-    private String name;
-    private String model;
-    private ItemType itemType;
-    private int id;
-    private String url;
+public final class InternalMemory extends Item {
     private String formFactor;
     private int capacity;
     private int amount;
-    private float price;
-    private String imageLink;
+
+    public InternalMemory(String name, String model, String url, float price, ItemType itemType, String imageLink) {
+        super(name, model, url, price, itemType, imageLink);
+
+        if (!itemType.equals(ItemType.SSD) && !itemType.equals(ItemType.HDD) && !itemType.equals(ItemType.M2DRIVE)) {
+            throw new IllegalArgumentException("Wrong Item type. Must be SSD, HDD or M2DRIVE");
+        }
+    }
 
     public String getFormFactor() {
         return formFactor;
@@ -41,65 +40,28 @@ public final class InternalMemory implements Itemable {
         this.amount = amount;
     }
 
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String getModel() {
-        return model;
-    }
-
-    @Override
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    @Override
-    public ItemType getItemType() {
-        return itemType;
-    }
-
     @Override
     public void setItemType(ItemType itemType) {
         if (!itemType.equals(ItemType.SSD) && !itemType.equals(ItemType.HDD) && !itemType.equals(ItemType.M2DRIVE)) {
             throw new IllegalArgumentException("Wrong Item type. Must be SSD, HDD or M2DRIVE");
         }
 
-        this.itemType = itemType;
+        super.setItemType(itemType);
     }
 
     @Override
-    public int getID() {
-        return id;
-    }
-
-    @Override
-    public void setID(int id) {
-        this.id = id;
-    }
-
-    @Override
-    public String getURL() {
-        return imageLink;
-    }
-
-    @Override
-    public void setURL(String url) {
-        this.url = url;
+    public String toString() {
+        return "InternalMemory{" +
+                "formFactor='" + formFactor + '\'' +
+                ", capacity=" + capacity +
+                ", amount=" + amount +
+                ", id=" + getId() +
+                ", name='" + getName() + '\'' +
+                ", model='" + getModel() + '\'' +
+                ", url='" + getUrl() + '\'' +
+                ", price=" + getPrice() +
+                ", itemType=" + getItemType() +
+                ", imageLink='" + getImageLink() + '\'' +
+                '}';
     }
 }

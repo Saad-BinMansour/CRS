@@ -1,33 +1,19 @@
 package com.example.crs.model.generic;
 
-import android.graphics.Bitmap;
+import com.example.crs.model.item.Item;
+import com.example.crs.model.item.ItemType;
 
-public final class RAM {
-    private String name;
-    private String model;
+public final class RAM extends Item {
     private int capacity;
     private int speed;
     private int CASLatency;
-    private float price;
-    private String imageLink;
 
-    public RAM() {
-    }
+    public RAM(String name, String model, String url, float price, ItemType itemType, String imageLink) {
+        super(name, model, url, price, itemType, imageLink);
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
+        if (!itemType.equals(ItemType.RAM)) {
+            throw new IllegalArgumentException("Wrong Item type. Must be RAM");
+        }
     }
 
     public int getCapacity() {
@@ -54,32 +40,28 @@ public final class RAM {
         this.CASLatency = CASLatency;
     }
 
-    public float getPrice() {
-        return price;
-    }
+    @Override
+    public void setItemType(ItemType itemType) {
+        if (!itemType.equals(ItemType.RAM)) {
+            throw new IllegalArgumentException("Wrong Item type. Must be RAM");
+        }
 
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    public String getImageLink() {
-        return imageLink;
-    }
-
-    public void setImageLink(String imageLink) {
-        this.imageLink = imageLink;
+        super.setItemType(itemType);
     }
 
     @Override
     public String toString() {
         return "RAM{" +
-                "name='" + name + '\'' +
-                ", model='" + model + '\'' +
-                ", capacity=" + capacity +
+                "capacity=" + capacity +
                 ", speed=" + speed +
                 ", CASLatency=" + CASLatency +
-                ", price=" + price +
-                ", imageLink='" + imageLink + '\'' +
+                ", id=" + getId() +
+                ", name='" + getName() + '\'' +
+                ", model='" + getModel() + '\'' +
+                ", url='" + getUrl() + '\'' +
+                ", price=" + getPrice() +
+                ", itemType=" + getItemType() +
+                ", imageLink='" + getImageLink() + '\'' +
                 '}';
     }
 }

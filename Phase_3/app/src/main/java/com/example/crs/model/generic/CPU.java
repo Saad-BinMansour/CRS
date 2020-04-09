@@ -1,52 +1,22 @@
 package com.example.crs.model.generic;
 
-import android.graphics.Bitmap;
+import com.example.crs.model.item.Item;
+import com.example.crs.model.item.ItemType;
 
-public final class CPU {
-    private String name;
-    private String model;
+public final class CPU extends Item {
     private SocketType socketType;
     private int numberOfCores;
     private int numberOfThreads;
     private int thermalDesign;
     private float operatingFrequency;
     private float maxTurboBoost;
-    private float price;
-    private String imageLink;
 
-    public CPU() {
-    }
+    public CPU(String name, String model, String url, float price, ItemType itemType, String imageLink) {
+        super(name, model, url, price, itemType, imageLink);
 
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    public String getImageLink() {
-        return imageLink;
-    }
-
-    public void setImageLink(String imageLink) {
-        this.imageLink = imageLink;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
+        if (!itemType.equals(ItemType.CPU)) {
+            throw new IllegalArgumentException("Wrong Item type. Must be CPU");
+        }
     }
 
     public SocketType getSocketType() {
@@ -98,16 +68,30 @@ public final class CPU {
     }
 
     @Override
+    public void setItemType(ItemType itemType) {
+        if (!itemType.equals(ItemType.CPU)) {
+            throw new IllegalArgumentException("Wrong Item type. Must be CPU");
+        }
+
+        super.setItemType(itemType);
+    }
+
+    @Override
     public String toString() {
         return "CPU{" +
-                "name='" + name + '\'' +
-                ", model='" + model + '\'' +
-                ", socketType=" + socketType +
+                "socketType=" + socketType +
                 ", numberOfCores=" + numberOfCores +
                 ", numberOfThreads=" + numberOfThreads +
                 ", thermalDesign=" + thermalDesign +
                 ", operatingFrequency=" + operatingFrequency +
                 ", maxTurboBoost=" + maxTurboBoost +
+                ", id=" + getId() +
+                ", name='" + getName() + '\'' +
+                ", model='" + getModel() + '\'' +
+                ", url='" + getUrl() + '\'' +
+                ", price=" + getPrice() +
+                ", itemType=" + getItemType() +
+                ", imageLink='" + getImageLink() + '\'' +
                 '}';
     }
 }

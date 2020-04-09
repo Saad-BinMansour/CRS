@@ -1,33 +1,19 @@
 package com.example.crs.model.generic;
 
-import android.graphics.Bitmap;
+import com.example.crs.model.item.Item;
+import com.example.crs.model.item.ItemType;
 
-public final class GPU {
-    private String name;
-    private String model;
+public final class GPU extends Item {
     private int memorySize;
     private float length;
     private float height;
-    private float price;
-    private String imageLink;
 
-    public GPU() {
-    }
+    public GPU(String name, String model, String url, float price, ItemType itemType, String imageLink) {
+        super(name, model, url, price, itemType, imageLink);
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
+        if (!itemType.equals(ItemType.GPU)) {
+            throw new IllegalArgumentException("Wrong Item type. Must be GPU");
+        }
     }
 
     public int getMemorySize() {
@@ -54,32 +40,28 @@ public final class GPU {
         this.height = height;
     }
 
-    public float getPrice() {
-        return price;
-    }
+    @Override
+    public void setItemType(ItemType itemType) {
+        if (!itemType.equals(ItemType.GPU)) {
+            throw new IllegalArgumentException("Wrong Item type. Must be GPU");
+        }
 
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    public String getImageLink() {
-        return imageLink;
-    }
-
-    public void setImageLink(String imageLink) {
-        this.imageLink = imageLink;
+        super.setItemType(itemType);
     }
 
     @Override
     public String toString() {
         return "GPU{" +
-                "name='" + name + '\'' +
-                ", model='" + model + '\'' +
-                ", memorySize=" + memorySize +
+                "memorySize=" + memorySize +
                 ", length=" + length +
                 ", height=" + height +
-                ", price=" + price +
-                ", imageLink='" + imageLink + '\'' +
+                ", id=" + getId() +
+                ", name='" + getName() + '\'' +
+                ", model='" + getModel() + '\'' +
+                ", url='" + getUrl() + '\'' +
+                ", price=" + getPrice() +
+                ", itemType=" + getItemType() +
+                ", imageLink='" + getImageLink() + '\'' +
                 '}';
     }
 }

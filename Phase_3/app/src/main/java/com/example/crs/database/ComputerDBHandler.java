@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.example.crs.model.item.Itemable;
+import com.example.crs.model.item.Item;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -33,15 +33,15 @@ public final class ComputerDBHandler extends SQLiteOpenHelper {
     }
 
     // Load all the data
-    public ArrayList<Itemable> loadHandler() {
-        LinkedList<Itemable> data = new LinkedList<>();
+    public ArrayList<Item> loadHandler() {
+        LinkedList<Item> data = new LinkedList<>();
         String query = "Select*FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             do {
                 byte[] computerData_1 = cursor.getBlob(Column.COMPUTER_DATA.columnNumber);
-                Itemable temp = new Gson().fromJson(new String(computerData_1), new TypeToken<Itemable>(){}.getType());
+                Item temp = new Gson().fromJson(new String(computerData_1), new TypeToken<Item>(){}.getType());
                 data.add(temp);
             } while (cursor.moveToNext());
             cursor.close();
@@ -51,12 +51,12 @@ public final class ComputerDBHandler extends SQLiteOpenHelper {
     }
 
     // Add a data into the database
-    public void addHandler(Itemable data) {
+    public void addHandler(Item data) {
         ContentValues values = new ContentValues();
         values.put(Column.COMPUTER_DATA.name(), new Gson().toJson(data).getBytes());
         values.put(Column.NAME.name(), data.getName());
         values.put(Column.MODEL.name(), data.getModel());
-        values.put(Column.URL.name(), data.getURL());
+        values.put(Column.URL.name(), data.getUrl());
         values.put(Column.ITEM_TYPE.name(), data.getItemType().name());
 
         // Setting the last ID to the inserted data
@@ -64,22 +64,22 @@ public final class ComputerDBHandler extends SQLiteOpenHelper {
         db.insert(TABLE_NAME, null, values);
         Cursor cursor = db.rawQuery("Select*FROM " + TABLE_NAME, null);
         cursor.moveToLast();
-        data.setID(cursor.getInt(Column.ID.columnNumber));
+        data.setId(cursor.getInt(Column.ID.columnNumber));
 
         cursor.close();
         db.close();
     }
 
     // Find an item from the database
-    public ArrayList<Itemable> findHandler(String name) {
-        LinkedList<Itemable> data = new LinkedList<>();
+    public ArrayList<Item> findHandler(String name) {
+        LinkedList<Item> data = new LinkedList<>();
         String query = "Select * FROM " + TABLE_NAME + "WHERE " + Column.NAME.name() + " = " + "'" + name + "'";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             do {
                 byte[] computerData_1 = cursor.getBlob(Column.COMPUTER_DATA.columnNumber);
-                Itemable temp = new Gson().fromJson(new String(computerData_1), new TypeToken<Itemable>(){}.getType());
+                Item temp = new Gson().fromJson(new String(computerData_1), new TypeToken<Item>(){}.getType());
                 data.add(temp);
             } while (cursor.moveToNext());
             cursor.close();
