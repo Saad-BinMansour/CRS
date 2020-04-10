@@ -14,8 +14,9 @@ public final class InternalMemory extends Item {
     public InternalMemory(String name, String model, String url, float price, ItemType itemType, String imageLink) {
         super(name, model, url, price, itemType, imageLink);
 
-        if (!itemType.equals(ItemType.SSD) && !itemType.equals(ItemType.HDD) && !itemType.equals(ItemType.M2DRIVE)) {
-            throw new IllegalArgumentException("Wrong Item type. Must be SSD, HDD or M2DRIVE");
+        if (!itemType.equals(ItemType.SSD) && !itemType.equals(ItemType.HDD) && !itemType.equals(ItemType.M2DRIVE)
+                && !itemType.equals(ItemType.NVMeSSD)) {
+            throw new IllegalArgumentException("Wrong Item type. Must be SSD, HDD, M2DRIVE or NVMe SSD");
         }
     }
 
@@ -45,8 +46,9 @@ public final class InternalMemory extends Item {
 
     @Override
     public void setItemType(ItemType itemType) {
-        if (!itemType.equals(ItemType.SSD) && !itemType.equals(ItemType.HDD) && !itemType.equals(ItemType.M2DRIVE)) {
-            throw new IllegalArgumentException("Wrong Item type. Must be SSD, HDD or M2DRIVE");
+        if (!itemType.equals(ItemType.SSD) && !itemType.equals(ItemType.HDD) && !itemType.equals(ItemType.M2DRIVE)
+                && !itemType.equals(ItemType.NVMeSSD)) {
+            throw new IllegalArgumentException("Wrong Item type. Must be SSD, HDD, M2DRIVE or NVMe SSD");
         }
 
         super.setItemType(itemType);

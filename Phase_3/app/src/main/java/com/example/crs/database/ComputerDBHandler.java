@@ -14,7 +14,6 @@ import com.example.crs.model.generic.InternalMemory;
 import com.example.crs.model.generic.RAM;
 import com.example.crs.model.item.Item;
 import com.example.crs.model.laptop.ComputerItem;
-import com.example.crs.utility.ItemJsonDeserializer;
 import com.example.crs.utility.RuntimeTypeAdapterFactory;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -26,14 +25,18 @@ import java.util.LinkedList;
 public final class ComputerDBHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "ComputerDB.db";
-    private static final String TABLE_NAME = "Computer";
     private static Gson gson;
 
-    private enum Column {
+    public static final String TABLE_NAME = "Computer";
+    public enum Column {
         ID(0), COMPUTER_DATA(1), NAME(2), MODEL(3), URL(4), ITEM_TYPE(5), BOOKMARKED(6);
         int columnNumber;
         Column(int i) {
             this.columnNumber = i;
+        }
+
+        public int getColumnNumber() {
+            return columnNumber;
         }
     }
 
@@ -71,6 +74,16 @@ public final class ComputerDBHandler extends SQLiteOpenHelper {
 
     // Add a data into the database
     public void addHandler(Item data) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String query = "SELECT * FROM SQLITE_SEQUENCE";
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            data.setId(cursor.getInt(1) + 1);
+        } else {
+            data.setId(1);
+        }
+
         ContentValues values = new ContentValues();
         values.put(Column.COMPUTER_DATA.name(), gson.toJson(data, Item.class).getBytes());
         values.put(Column.NAME.name(), data.getName());
@@ -78,16 +91,11 @@ public final class ComputerDBHandler extends SQLiteOpenHelper {
         values.put(Column.URL.name(), data.getUrl());
         values.put(Column.ITEM_TYPE.name(), data.getItemType().name());
 
-        // Setting the last ID to the inserted data
-        SQLiteDatabase db = this.getWritableDatabase();
         db.insert(TABLE_NAME, null, values);
-        Cursor cursor = db.rawQuery("Select*FROM " + TABLE_NAME, null);
-        cursor.moveToLast();
-        data.setId(cursor.getInt(Column.ID.columnNumber));
-
-        cursor.close();
         db.close();
+        cursor.close();
     }
+
 
     // Find an item from the database
     public ArrayList<Item> findHandler(String name) {
@@ -98,7 +106,7 @@ public final class ComputerDBHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 byte[] computerData_1 = cursor.getBlob(Column.COMPUTER_DATA.columnNumber);
-                Item temp = gson.fromJson(new String(computerData_1), Item.class);
+                Item temp = gson.fromJson(new String(computerData_1).trim(), Item.class);
                 data.add(temp);
             } while (cursor.moveToNext());
             cursor.close();
