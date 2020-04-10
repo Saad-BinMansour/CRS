@@ -3,14 +3,13 @@ package com.example.crs.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
 import com.example.crs.R;
 import com.example.crs.database.ComputerDBHandler;
+import com.example.crs.utility.CustomAdapter;
 
 import java.util.Objects;
 
