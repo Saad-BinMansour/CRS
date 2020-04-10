@@ -10,6 +10,8 @@ import android.widget.ListView;
 import com.example.crs.R;
 import com.example.crs.database.ComputerDBHandler;
 
+import java.util.Objects;
+
 public class ResultActivity extends AppCompatActivity {
     private CustomAdapter customAdapter;
     private ComputerDBHandler computerDBHandler;
@@ -24,14 +26,14 @@ public class ResultActivity extends AppCompatActivity {
         computerDBHandler = new ComputerDBHandler(this, null);
 
         Intent intent = getIntent();
-        String searchName = intent.getExtras().getString("SearchItemsName");
+        String searchName = Objects.requireNonNull(intent.getExtras()).getString("SearchItemsName");
         getSearchItems(searchName);
     }
 
     private void getSearchItems(String searchItem) {
         if (searchItem != null) {
             customAdapter =
-                    new CustomAdapter(this, R.layout.product_view, computerDBHandler.findHandler("MSI GE65 Raider-432"));
+                    new CustomAdapter(this, R.layout.product_view, computerDBHandler.findHandler(searchItem));
             listView.setAdapter(customAdapter);
         }
     }

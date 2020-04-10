@@ -1,5 +1,6 @@
 package com.example.crs.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +23,7 @@ public class CustomAdapter extends ArrayAdapter<Item> {
     private int resource;
     private List<Item> itemList;
 
-    public CustomAdapter(@NonNull Context context, int resource, @NonNull List<Item> itemList) {
+    CustomAdapter(@NonNull Context context, int resource, @NonNull List<Item> itemList) {
         super(context, resource, itemList);
 
         this.myContext = context;
@@ -30,18 +31,22 @@ public class CustomAdapter extends ArrayAdapter<Item> {
         this.itemList = itemList;
     }
 
+    @SuppressLint("SetTextI18n")
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(myContext);
-        View view = inflater.inflate(resource, null);
+        @SuppressLint("ViewHolder") View view = inflater.inflate(resource, null);
         Item item = itemList.get(position);
 
         ImageView productImage = view.findViewById(R.id.product_img);
         TextView productName = view.findViewById(R.id.product_name);
         TextView productPrice = view.findViewById(R.id.product_price);
 
-        //Glide.with(myContext).load(item.getImageLink()).fitCenter().into(productImage);
+        Glide.with(myContext)
+                .load(item.getImageLink())
+                .fitCenter()
+                .into(productImage);
         productName.setText(item.getName());
         productPrice.setText(item.getPrice() + "");
 
