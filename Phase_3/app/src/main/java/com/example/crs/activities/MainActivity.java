@@ -36,51 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
         computerDBHandler = new ComputerDBHandler(this, null);
 
-        /*ComputerItem laptop = new ComputerItem("MSI GE65 Raider-432", "GE65 Raider-432",
-                "https://www.newegg.com/global/sa-en/aluminum-black-msi-ge-series-ge65-raider-" +
-                        "432-gaming-entertainment/p/N82E16834155331?Item=N82E16834155331&Description" +
-                        "=PPSSBFRVZMCFNQ&cm_re=PPSSBFRVZMCFNQ-_-34-155-331-_-Product&quicklink=true",
-                4532.99f, ItemType.NOTEBOOK, "https://c1.neweggimages.com/NeweggImage/ProductImageCompressAll1280/34-155-331-V21.jpg");
-
-        laptop.setCpu(new CPU());
-        laptop.getCpu().setName("Intel Core i7 9th Gen 9750H (2.60 GHz) ");
-        laptop.getCpu().setOperatingFrequency(2.6f);
-        laptop.getCpu().setNumberOfCores(6);
-        laptop.getCpu().setNumberOfThreads(12);
-        laptop.getCpu().setMaxTurboBoost(4.50f);
-
-        laptop.setGpu(new GPU());
-        laptop.getGpu().setName("GeForce GTX 1660 Ti 6 GB GDDR6 ");
-        laptop.getGpu().setMemorySize(6);
-
-        laptop.setRam(new RAM());
-        laptop.getRam().setName("16 GB DDR4 2666 8 GB x 2");
-        laptop.getRam().setCapacity(16);
-        laptop.getRam().setSpeed(2666);
-
-        laptop.setDisplay(new Display());
-        laptop.getDisplay().setSize(15.6f);
-        laptop.getDisplay().setDisplayResolution(DisplayResolution.D1920x1080);
-        laptop.getDisplay().setScreenType(ScreenType.IPS);
-        laptop.getDisplay().setHertz(144);
-        laptop.getDisplay().setMs(3);
-        laptop.getDisplay().setNtsc(72);
-        laptop.getDisplay().setsRGB(100);
-
-        laptop.setPorts(new Ports());
-        laptop.getPorts().addPort(Ports.PortType.Mini_DisplayPort, 1);
-        laptop.getPorts().addPort(Ports.PortType.USB_3_2_Gen_2_Type_C, 1);
-        laptop.getPorts().addPort(Ports.PortType.USB_3_2_Gen_1, 2);
-        laptop.getPorts().addPort(Ports.PortType.USB_3_2_Gen_2, 1);
-
-        laptop.setDimensions(357.63f, 247.90f, 26.92f);
-        laptop.setWeight(2.27f);
-
-        laptop.setNVMeSSD(512);
-        laptop.getNVMeSSD().setName("NVMe SSD");
-
-        computerDBHandler.addHandler(laptop);*/
-
         minPrice = findViewById(R.id.minPrice);
         highPrice = findViewById((R.id.highPrice));
         searchBar = findViewById(R.id.searchBar);
