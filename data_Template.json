@@ -1,0 +1,103 @@
+{
+    "NVMeSSD": {
+        "amount": -1,
+        "capacity": -1,
+        "id": 0,
+        "itemType": "NVMeSSD",
+        "name": "???",
+        "price": 0
+    },
+	"hdd": {
+        "amount": -1,
+        "capacity": -1,
+        "id": 0,
+        "itemType": "HDD",
+        "name": "???",
+        "price": 0
+    },
+	"ssd": {
+        "amount": -1,
+        "capacity": -1,
+        "id": 0,
+        "itemType": "SSD",
+        "name": "???",
+        "price": 0
+    },
+	"m2Drive": {
+        "amount": -1,
+        "capacity": ???,
+        "id": 0,
+        "itemType": "M2DRIVE",
+        "name": "???",
+        "price": 0
+    },
+    "cpu": {
+        "id": 0,
+        "maxTurboBoost": -1,
+        "name": "???",
+        "numberOfCores": -1,
+        "numberOfThreads": -1,
+        "operatingFrequency": -1,
+        "price": 0,
+        "thermalDesign": 0
+    },
+    "depth": -1,
+    "display": {
+        "aRGB": 0,
+        "displayResolution": "???",
+        "hertz": 0,
+        "ms": 0,
+        "ntsc": 0,
+        "sRGB": -1,
+        "screenType": "???",
+        "size": -1,
+        "touchscreen": false
+    },
+    "gpu": {
+        "height": 0,
+        "id": 0,
+        "length": 0,
+        "memorySize": -1,
+        "name": "???",
+        "price": 0
+    },
+    "height": -1,
+    "id": 0,
+    "imageLink": "???",
+    "itemType": "???",
+    "model": "???",
+    "name": "???",
+    "ports": {
+        "ports": [
+            {
+                "count": -1,
+                "portType": "USB_3_2_Gen_1_Type_C"
+            },
+            {
+                "count": -1,
+                "portType": "USB_3_2_Gen_1"
+            },
+            {
+                "count": -1,
+                "portType": "HDMI_4K_30"
+            },
+            {
+                "count": -1,
+                "portType": "Headset_AMP_Gold_Flash_jacks"
+            }
+        ]
+    },
+    "price": 4154.99,
+    "ram": {
+        "CASLatency": 0,
+        "capacity": 8,
+        "id": 0,
+        "name": "8 GB DDR4 2666 8 GB x 1",
+        "price": 0,
+        "speed": 2666
+    },
+    "type": "ComputerItem",
+    "url": "https://www.newegg.com/global/sa-en/black-msi-gf-series-gf65-thin-9sexr-250-gaming-entertainment/p/N82E16834155350?Description=msi&cm_re=msi-_-34-155-350-_-Product",
+    "weight": 1.86,
+    "width": 358.9
+}

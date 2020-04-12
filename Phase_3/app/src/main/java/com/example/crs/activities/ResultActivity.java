@@ -9,8 +9,10 @@ import android.widget.ListView;
 
 import com.example.crs.R;
 import com.example.crs.database.ComputerDBHandler;
+import com.example.crs.model.item.Item;
 import com.example.crs.utility.CustomAdapter;
 
+import java.util.List;
 import java.util.Objects;
 
 public class ResultActivity extends AppCompatActivity {
@@ -26,18 +28,10 @@ public class ResultActivity extends AppCompatActivity {
         listView = findViewById(R.id.result_listview);
         computerDBHandler = new ComputerDBHandler(this, null);
 
+
         Intent intent = getIntent();
         String searchName = Objects.requireNonNull(intent.getExtras()).getString("SearchItemsName");
         getSearchItems(searchName);
-    }
-
-    private void getSearchItems(String searchItem) {
-        if (searchItem != null) {
-            customAdapter =
-                    new CustomAdapter(this,
-                            R.layout.product_view, computerDBHandler.findHandler(searchItem));
-            listView.setAdapter(customAdapter);
-        }
     }
 
     public void homebutton(View view) {
@@ -53,5 +47,22 @@ public class ResultActivity extends AppCompatActivity {
     public void bookmarkbutton(View view) {
         Intent intent=new Intent(this,BookmarkActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // Refresh activity when returns form other activity
+        if (customAdapter != null) {
+            customAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private void getSearchItems(String searchItem) {
+        if (searchItem != null) {
+            customAdapter = new CustomAdapter(this, R.layout.product_view, computerDBHandler.findHandler(searchItem));
+            listView.setAdapter(customAdapter);
+        }
     }
 }
