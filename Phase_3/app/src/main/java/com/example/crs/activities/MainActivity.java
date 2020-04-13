@@ -5,40 +5,30 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.appyvet.materialrangebar.RangeBar;
 
 import com.example.crs.R;
-import com.example.crs.database.ComputerDBHandler;
-import com.example.crs.model.generic.CPU;
-import com.example.crs.model.generic.GPU;
-import com.example.crs.model.generic.InternalMemory;
-import com.example.crs.model.generic.Ports;
-import com.example.crs.model.generic.RAM;
-import com.example.crs.model.item.ItemType;
-import com.example.crs.model.laptop.ComputerItem;
-import com.example.crs.model.laptop.Display;
-import com.example.crs.model.laptop.DisplayResolution;
-import com.example.crs.model.laptop.ScreenType;
 
+// The main page of the software
 public class MainActivity extends AppCompatActivity {
     private RangeBar rangeBar;
     private TextView minPrice,highPrice;
     private SearchView searchBar;
-    private ComputerDBHandler computerDBHandler;
+    private Button resultButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        computerDBHandler = new ComputerDBHandler(this, null);
-
         minPrice = findViewById(R.id.minPrice);
         highPrice = findViewById((R.id.highPrice));
         searchBar = findViewById(R.id.searchBar);
+        resultButton = findViewById(R.id.resultButton);
 
         rangeBar=findViewById(R.id.RangeBar);
         rangeBar.setOnRangeBarChangeListener(new RangeBar.OnRangeBarChangeListener() {
@@ -58,18 +48,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
         searchFunction();
+        getResult();
     }
 
+    // Opens the setting page
     public void settingsButton(View view) {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 
+    // Opens the bookmark page
     public void bookmarkbutton(View view) {
         Intent intent = new Intent(this, BookmarkActivity.class);
         startActivity(intent);
     }
 
+    // Opens the result and parse a string from the search view's query
     private void searchFunction() {
         final SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
             @Override
@@ -88,5 +82,17 @@ public class MainActivity extends AppCompatActivity {
         };
 
         searchBar.setOnQueryTextListener(queryTextListener);
+    }
+
+    // Opens the result page and parse user's data
+    private void getResult() {
+        resultButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
+                intent.putExtra("SearchItemsName", (Bundle) null);
+                startActivity(intent);
+            }
+        });
     }
 }
