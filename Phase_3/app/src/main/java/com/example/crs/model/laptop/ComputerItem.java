@@ -9,6 +9,7 @@ import com.example.crs.model.item.Item;
 import com.example.crs.model.item.ItemType;
 
 public final class ComputerItem extends Item {
+    private static final String NO_DEDICATED_GPU = "???";
     private Display display;
     private Battery battery;
     private CPU cpu;
@@ -180,7 +181,7 @@ public final class ComputerItem extends Item {
     public String toString() {
         return getName() + "\n"
                 + cpu.getName() + "\n"
-                + gpu.getName() + "\n"
+                + (gpu.getName().equals(NO_DEDICATED_GPU) ? "" : gpu.getName() + "\n")
                 + ram.getName() + "\n"
                 + display + "\n"
                 + width + " mm x " + depth + " mm x " + height + " mm " + weight + " kg" +  "\n"
@@ -190,16 +191,16 @@ public final class ComputerItem extends Item {
 
     private String getAvailableInternalMem() {
         StringBuilder stringBuilder = new StringBuilder();
-        if (hdd != null) {
+        if (hdd != null && hdd.getCapacity() > 0) {
             stringBuilder.append(hdd.getCapacity()).append(" GB ").append("HDD").append("\n");
         }
-        if (ssd != null) {
+        if (ssd != null && ssd.getCapacity() > 0) {
             stringBuilder.append(ssd.getCapacity()).append(" GB ").append("SSD").append("\n");
         }
-        if (m2Drive != null) {
+        if (m2Drive != null && m2Drive.getCapacity() > 0) {
             stringBuilder.append(m2Drive.getCapacity()).append(" GB ").append("m2Drive").append("\n");
         }
-        if (NVMeSSD != null) {
+        if (NVMeSSD != null && NVMeSSD.getCapacity() > 0) {
             stringBuilder.append(NVMeSSD.getCapacity()).append(" GB ").append("NVMeSSD");
         }
 

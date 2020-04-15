@@ -5,15 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.appyvet.materialrangebar.RangeBar;
 
@@ -63,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         searchFunction();
         getResult();
     }
@@ -106,15 +103,21 @@ public class MainActivity extends AppCompatActivity {
         resultButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
-                intent.putExtra("SearchItemsName", (Bundle) null);
-                intent.putExtra("Minimum price", Integer.parseInt(minPrice.getText().toString()));
-                intent.putExtra("Maximum price", Integer.parseInt(highPrice.getText().toString()));
-                intent.putExtra("Use for", useGroup.getCheckedRadioButtonId());
-                intent.putExtra("Matter most", matterMostGroup.getCheckedRadioButtonId());
-                intent.putExtra("Laptop check", laptopCheck.isChecked());
-                intent.putExtra("Desktop check", desktopCheck.isChecked());
-                startActivity(intent);
+                if (!laptopCheck.isChecked() && !desktopCheck.isChecked()) {
+                    Toast.makeText(getApplicationContext(), "Laptop or PC is not checked!", Toast.LENGTH_SHORT).show();
+                } else if (useGroup.getCheckedRadioButtonId() == -1 || matterMostGroup.getCheckedRadioButtonId() == -1) {
+                    Toast.makeText(getApplicationContext(), "One or both question is unanswered!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
+                    intent.putExtra("SearchItemsName", (Bundle) null);
+                    intent.putExtra("Minimum price", Integer.parseInt(minPrice.getText().toString()));
+                    intent.putExtra("Maximum price", Integer.parseInt(highPrice.getText().toString()));
+                    intent.putExtra("Use for", useGroup.getCheckedRadioButtonId());
+                    intent.putExtra("Matter most", matterMostGroup.getCheckedRadioButtonId());
+                    intent.putExtra("Laptop check", laptopCheck.isChecked());
+                    intent.putExtra("Desktop check", desktopCheck.isChecked());
+                    startActivity(intent);
+                }
             }
         });
     }
