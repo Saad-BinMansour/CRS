@@ -2,6 +2,7 @@
 
 Computer Recommendtion Software For CS310 Project Group 'G' 
 
+This is the develop branch
 
 -----------------------------------------------------------------
 Contributions on phase2:
@@ -17,4 +18,16 @@ Contributions on phase2:
 **Tareq Alagel** worked On: 
 
 -----------------------------------------------------------------
+Contributions on phase3:
 
+**Saad Bin Onayq** worked On:
+
+**Fowzan Alhantoshi** worked On:  
+
+**Mohammad Alkhalifah** worked On:
+
+**Khaled Almodameeg** worked On: 
+
+**Tareq Alagel** worked On: 
+
+-----------------------------------------------------------------

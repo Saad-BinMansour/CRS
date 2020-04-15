@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "352176169094",
+    "firebase_url": "https://crsp-84704.firebaseio.com",
+    "project_id": "crsp-84704",
+    "storage_bucket": "crsp-84704.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:352176169094:android:ec2f80ee188f7034517107",
+        "android_client_info": {
+          "package_name": "com.example.crs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "352176169094-82nn8fv1pr2cn1eqkgmtgh5dk0vakl3k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": ""
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "352176169094-82nn8fv1pr2cn1eqkgmtgh5dk0vakl3k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
