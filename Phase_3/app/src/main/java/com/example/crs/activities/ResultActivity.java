@@ -11,8 +11,10 @@ import com.example.crs.R;
 import com.example.crs.database.ComputerDBHandler;
 import com.example.crs.model.item.Item;
 import com.example.crs.utility.CustomAdapter;
+import com.example.crs.utility.RadioButtonID;
+import com.example.crs.utility.ResultProcess;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class ResultActivity extends AppCompatActivity {
@@ -31,7 +33,24 @@ public class ResultActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String searchName = Objects.requireNonNull(intent.getExtras()).getString("SearchItemsName");
-        getSearchItems(searchName);
+
+        if (searchName != null) { // List items that match the search string
+            customAdapter = new CustomAdapter(this, R.layout.product_view, computerDBHandler.findHandler(searchName));
+        } else { // List items that matches the user preference
+            int minPrice = intent.getExtras().getInt("Minimum price");
+            int maxPrice = intent.getExtras().getInt("Maximum price");
+            RadioButtonID useForID = RadioButtonID.getTypeById(intent.getExtras().getInt("Use for"));
+            RadioButtonID matterMostID = RadioButtonID.getTypeById(intent.getExtras().getInt("Matter most"));
+            boolean laptopIsChecked = intent.getExtras().getBoolean("Laptop check");
+            boolean desktopIsChecked = intent.getExtras().getBoolean("Desktop check");
+
+            ArrayList<Item> itemArrayList = ResultProcess.getResult(computerDBHandler.loadHandler(),
+                    minPrice, maxPrice, useForID, matterMostID, laptopIsChecked, desktopIsChecked);
+
+            customAdapter = new CustomAdapter(this, R.layout.product_view, itemArrayList);
+        }
+
+        listView.setAdapter(customAdapter);
     }
 
     public void homebutton(View view) {
@@ -49,6 +68,7 @@ public class ResultActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    // When the activity resumes notify that data is changed
     @Override
     public void onResume() {
         super.onResume();
@@ -56,13 +76,6 @@ public class ResultActivity extends AppCompatActivity {
         // Refresh activity when returns form other activity
         if (customAdapter != null) {
             customAdapter.notifyDataSetChanged();
-        }
-    }
-
-    private void getSearchItems(String searchItem) {
-        if (searchItem != null) {
-            customAdapter = new CustomAdapter(this, R.layout.product_view, computerDBHandler.findHandler(searchItem));
-            listView.setAdapter(customAdapter);
         }
     }
 }

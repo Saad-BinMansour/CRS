@@ -9,6 +9,7 @@ import com.example.crs.model.item.Item;
 import com.example.crs.model.item.ItemType;
 
 public final class ComputerItem extends Item {
+    private static final String NO_DEDICATED_GPU = "???";
     private Display display;
     private Battery battery;
     private CPU cpu;
@@ -93,7 +94,7 @@ public final class ComputerItem extends Item {
     }
 
     public void setSsd(int capacity) {
-        this.ssd = new InternalMemory();;
+        this.ssd = new InternalMemory();
         this.ssd.setItemType(ItemType.SSD);
         this.ssd.setCapacity(capacity);
     }
@@ -180,7 +181,7 @@ public final class ComputerItem extends Item {
     public String toString() {
         return getName() + "\n"
                 + cpu.getName() + "\n"
-                + gpu.getName() + "\n"
+                + (gpu.getName().equals(NO_DEDICATED_GPU) ? "" : gpu.getName() + "\n")
                 + ram.getName() + "\n"
                 + display + "\n"
                 + width + " mm x " + depth + " mm x " + height + " mm " + weight + " kg" +  "\n"
@@ -190,17 +191,17 @@ public final class ComputerItem extends Item {
 
     private String getAvailableInternalMem() {
         StringBuilder stringBuilder = new StringBuilder();
-        if (hdd != null) {
-            stringBuilder.append(hdd.getCapacity() + " GB " + hdd.getName() + "\n");
+        if (hdd != null && hdd.getCapacity() > 0) {
+            stringBuilder.append(hdd.getCapacity()).append(" GB ").append("HDD").append("\n");
         }
-        if (ssd != null) {
-            stringBuilder.append(ssd.getCapacity() + " GB " + ssd.getName() + "\n");
+        if (ssd != null && ssd.getCapacity() > 0) {
+            stringBuilder.append(ssd.getCapacity()).append(" GB ").append("SSD").append("\n");
         }
-        if (m2Drive != null) {
-            stringBuilder.append(m2Drive.getCapacity() + " GB " + m2Drive.getName() + "\n");
+        if (m2Drive != null && m2Drive.getCapacity() > 0) {
+            stringBuilder.append(m2Drive.getCapacity()).append(" GB ").append("m2Drive").append("\n");
         }
-        if (NVMeSSD != null) {
-            stringBuilder.append(NVMeSSD.getCapacity() + " GB " + NVMeSSD.getName());
+        if (NVMeSSD != null && NVMeSSD.getCapacity() > 0) {
+            stringBuilder.append(NVMeSSD.getCapacity()).append(" GB ").append("NVMeSSD");
         }
 
         return stringBuilder.toString();
