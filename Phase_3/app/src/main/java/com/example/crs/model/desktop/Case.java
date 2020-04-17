@@ -4,60 +4,10 @@ import com.example.crs.model.generic.Ports;
 import com.example.crs.model.item.Item;
 import com.example.crs.model.item.ItemType;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
-
-
-
-
-     class MotherBoards {
-         public enum motherboard {
-             MICRO_ATX("Micro ATX"),
-             ATX("ATX"),
-             MINI_ITX("Mini-ITX");
-
-             String name;
-
-             motherboard(String name) {
-                 this.name = name;
-             }
-         }
-
-         private class MotherBoard {
-             motherboard motherboard;
-
-             private MotherBoard(motherboard motherboard) {
-                 this.motherboard = motherboard;
-             }
-
-             public String toString() {
-                 return "Motherboard Compatibility " + motherboard.name;
-             }
-
-
-         }
-
-         private ArrayList<MotherBoard> motherBoards;
-         public MotherBoards() {
-             motherBoards = new ArrayList<>();
-         }
-
-         public void addMB(motherboard motherboard) {
-             motherBoards. add(new MotherBoard(motherboard));
-         }
-
-         @Override
-         public String toString() {
-             StringBuilder stringBuilder = new StringBuilder();
-             for (MotherBoard motherBoard : motherBoards) {
-                 stringBuilder.append(motherBoard).append("\ ");
-             }
-             return stringBuilder.toString();
-         }
-     }
-
-
-
-    class Fan{
+    /*class Fan{
         public enum Side{
             FRONT("Front"),
             REAR("Rear"),
@@ -105,7 +55,7 @@ import java.util.ArrayList;
             }
             return stringBuilder.toString();
         }
-    }
+    }*/
 
 
 
@@ -113,7 +63,7 @@ import java.util.ArrayList;
 
 
 
-  class Expansion{
+  /*class Expansion{
     public enum Expansionss{
 
         INTERNAL_5_25_Drive_Bays("Internal 5.25 Drive Bays"),
@@ -167,22 +117,27 @@ private class Expansions {
         return stringBuilder.toString();
     }
 }
-
+*/
 
 
 public final class Case extends Item {
     private Ports ports;
     private String color;
+    private FormFactor formFactor;
     private boolean power_supply;
     private float height;
     private float width;
     private float depth;
     private float weight;
-    private Expansion Expansions;
     private float GPU_Length;
     private float CPU_Cooler_Height;
-    private Fan fan;
-    private MotherBoards MotherBoards;
+
+    public Case() {
+    }
+
+    public Case(String name, String model, String url, float price, ItemType itemType, String imageLink) {
+        super(name, model, url, price, itemType, imageLink);
+    }
 
     public Ports getPorts() {
         return ports;
@@ -240,14 +195,6 @@ public final class Case extends Item {
         this.weight = weight;
     }
 
-    public Expansion getExpansions() {
-        return Expansions;
-    }
-
-    public void setExpansions(Expansion expansions) {
-        Expansions = expansions;
-    }
-
     public float getGPU_Length() {
         return GPU_Length;
     }
@@ -264,20 +211,12 @@ public final class Case extends Item {
         this.CPU_Cooler_Height = CPU_Cooler_Height;
     }
 
-    public Fan getFan() {
-        return fan;
+    public FormFactor getFormFactor() {
+        return formFactor;
     }
 
-    public void setFan(Fan fan) {
-        this.fan = fan;
-    }
-
-    public com.example.crs.model.desktop.MotherBoards getMotherBoards() {
-        return MotherBoards;
-    }
-
-    public void setMotherBoards(com.example.crs.model.desktop.MotherBoards motherBoards) {
-        MotherBoards = motherBoards;
+    public void setFormFactor(FormFactor formFactor) {
+        this.formFactor = formFactor;
     }
 
     private enum Size{
@@ -295,14 +234,9 @@ public final class Case extends Item {
         }
     }
 
-
-
-
-    public Case(String name, String model, String url, float price, ItemType itemType, String imageLink) {
-        super(name, model, url, price, itemType, imageLink);
+    @NotNull
+    @Override
+    public String toString() {
+        return getName();
     }
-
-
-
-
 }

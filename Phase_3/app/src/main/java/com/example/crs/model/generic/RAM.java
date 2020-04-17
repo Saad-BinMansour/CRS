@@ -3,6 +3,8 @@ package com.example.crs.model.generic;
 import com.example.crs.model.item.Item;
 import com.example.crs.model.item.ItemType;
 
+import org.jetbrains.annotations.NotNull;
+
 public final class RAM extends Item {
     private int capacity;
     private int speed;
@@ -52,19 +54,9 @@ public final class RAM extends Item {
         super.setItemType(itemType);
     }
 
+    @NotNull
     @Override
     public String toString() {
-        return "RAM{" +
-                "capacity=" + capacity +
-                ", speed=" + speed +
-                ", CASLatency=" + CASLatency +
-                ", id=" + getId() +
-                ", name='" + getName() + '\'' +
-                ", model='" + getModel() + '\'' +
-                ", url='" + getUrl() + '\'' +
-                ", price=" + getPrice() +
-                ", itemType=" + getItemType() +
-                ", imageLink='" + getImageLink() + '\'' +
-                '}';
+        return getName();
     }
 }
