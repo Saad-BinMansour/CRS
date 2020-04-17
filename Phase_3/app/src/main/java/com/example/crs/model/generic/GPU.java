@@ -3,6 +3,8 @@ package com.example.crs.model.generic;
 import com.example.crs.model.item.Item;
 import com.example.crs.model.item.ItemType;
 
+import org.jetbrains.annotations.NotNull;
+
 public final class GPU extends Item {
     private int memorySize;
     private float length;
@@ -52,19 +54,9 @@ public final class GPU extends Item {
         super.setItemType(itemType);
     }
 
+    @NotNull
     @Override
     public String toString() {
-        return "GPU{" +
-                "memorySize=" + memorySize +
-                ", length=" + length +
-                ", height=" + height +
-                ", id=" + getId() +
-                ", name='" + getName() + '\'' +
-                ", model='" + getModel() + '\'' +
-                ", url='" + getUrl() + '\'' +
-                ", price=" + getPrice() +
-                ", itemType=" + getItemType() +
-                ", imageLink='" + getImageLink() + '\'' +
-                '}';
+        return getName();
     }
 }

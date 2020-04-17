@@ -1,11 +1,25 @@
 package com.example.crs.utility;
 
+import com.example.crs.model.desktop.Case;
+import com.example.crs.model.desktop.DesktopItem;
+import com.example.crs.model.desktop.FormFactor;
+import com.example.crs.model.desktop.Motherboard;
+import com.example.crs.model.desktop.PowerSupply;
+import com.example.crs.model.generic.CPU;
+import com.example.crs.model.generic.GPU;
+import com.example.crs.model.generic.InternalMemory;
+import com.example.crs.model.generic.RAM;
+import com.example.crs.model.generic.SocketType;
 import com.example.crs.model.item.Item;
+import com.example.crs.model.item.ItemType;
 import com.example.crs.model.laptop.ComputerItem;
 import com.example.crs.model.laptop.DisplayResolution;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Objects;
 
 public final class ResultProcess {
     private static final float MAX_WEIGHT = 2f;
@@ -39,7 +53,8 @@ public final class ResultProcess {
         }
 
         if (desktopIsChecked) {
-            // Add desktop result function here <------------
+            // Add results from getDesktopResult method
+            result.addAll(getDesktopResult(items, minPrice, maxPrice, useRadioId, matterRadioId));
         }
 
         return result;
@@ -129,6 +144,74 @@ public final class ResultProcess {
             if (isMatchUserMatterMost && isMatchUserUsage) {
                 resultItems.add(computerItem);
             }
+        }
+
+        return new ArrayList<>(resultItems);
+    }
+
+    /*
+     * ---------------> REQUIRES OPTIMIZATION!!!!!! <--------------------
+     */
+    private static ArrayList<Item> getDesktopResult(ArrayList<Item> items,
+                                                    int minPrice, int maxPrice,
+                                                    RadioButtonID useRadioId, RadioButtonID matterRadioId) {
+        HashMap<SocketType, LinkedList<CPU>> socketCpuHashMap = new HashMap<>();
+        HashMap<FormFactor, LinkedList<Case>> formFactorCaseHashMap = new HashMap<>();
+        LinkedList<Motherboard> motherboardLinkedList = new LinkedList<>();
+        LinkedList<GPU> gpuLinkedList = new LinkedList<>();
+        LinkedList<RAM> ramLinkedList = new LinkedList<>();
+        LinkedList<PowerSupply> powerSupplyLinkedList = new LinkedList<>();
+        LinkedList<InternalMemory> internalMemoryLinkedList = new LinkedList<>();
+        LinkedList<Item> resultItems = new LinkedList<>();
+
+        for (SocketType socketType : SocketType.values()) {
+            socketCpuHashMap.put(socketType, new LinkedList<CPU>());
+        }
+
+        for (FormFactor factor : FormFactor.values()) {
+            formFactorCaseHashMap.put(factor, new LinkedList<Case>());
+        }
+
+        for (int i = 0; i < items.size(); i++) {
+            Item item = items.get(i);
+            if (item instanceof CPU) {
+                CPU cpu = (CPU) item;
+                Objects.requireNonNull(socketCpuHashMap.get(cpu.getSocketType())).add(cpu);
+            } else if (item instanceof Motherboard) {
+                Motherboard motherboard = (Motherboard) item;
+                motherboardLinkedList.add(motherboard);
+            } else if (item instanceof Case) {
+                Case aCase = (Case) item;
+                Objects.requireNonNull(formFactorCaseHashMap.get(aCase.getFormFactor())).add(aCase);
+            } else if (item instanceof GPU) {
+                GPU gpu = (GPU) item;
+                gpuLinkedList.add(gpu);
+            } else if (item instanceof RAM) {
+                RAM ram = (RAM) item;
+                ramLinkedList.add(ram);
+            } else if (item instanceof InternalMemory) {
+                InternalMemory internalMemory = (InternalMemory) item;
+                internalMemoryLinkedList.add(internalMemory);
+            } else if (item instanceof PowerSupply) {
+                PowerSupply powerSupply = (PowerSupply) item;
+                powerSupplyLinkedList.add(powerSupply);
+            }
+        }
+
+        for (Motherboard motherboard : motherboardLinkedList) {
+            DesktopItem desktopItem = new DesktopItem();
+            desktopItem.setMotherboard(motherboard);
+            desktopItem.setCpu(Objects.requireNonNull(socketCpuHashMap.get(motherboard.getSocketType()).peekFirst()));
+            assert gpuLinkedList.peekFirst() != null;
+            desktopItem.setGpu(gpuLinkedList.peekFirst());
+            assert ramLinkedList.peekFirst() != null;
+            desktopItem.setRam(ramLinkedList.peekFirst());
+            desktopItem.setaCase(Objects.requireNonNull(formFactorCaseHashMap.get(motherboard.getFormFactor())).peekFirst());
+            assert powerSupplyLinkedList.peekFirst() != null;
+            desktopItem.setPowerSupply(powerSupplyLinkedList.peekFirst());
+            desktopItem.setImageLink(Objects.requireNonNull(Objects.requireNonNull(formFactorCaseHashMap.get(motherboard.getFormFactor())).peekFirst()).getImageLink());
+            desktopItem.setItemType(ItemType.DESKTOP);
+            resultItems.add(desktopItem);
         }
 
         return new ArrayList<>(resultItems);

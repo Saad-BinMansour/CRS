@@ -1,5 +1,6 @@
 package com.example.crs.database;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -8,6 +9,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.crs.model.desktop.Case;
+import com.example.crs.model.desktop.DesktopItem;
+import com.example.crs.model.desktop.Motherboard;
+import com.example.crs.model.desktop.PowerSupply;
 import com.example.crs.model.generic.CPU;
 import com.example.crs.model.generic.GPU;
 import com.example.crs.model.generic.InternalMemory;
@@ -46,10 +51,14 @@ public final class ComputerDBHandler extends SQLiteOpenHelper {
         RuntimeTypeAdapterFactory<Item> itemRuntimeTypeAdapterFactory
                 = RuntimeTypeAdapterFactory.of(Item.class, "type")
                 .registerSubtype(ComputerItem.class, "ComputerItem")
+                .registerSubtype(DesktopItem.class, "DesktopItem")
                 .registerSubtype(CPU.class, "CPU")
                 .registerSubtype(GPU.class, "GPU")
                 .registerSubtype(RAM.class, "RAM")
-                .registerSubtype(InternalMemory.class, "InternalMemory");
+                .registerSubtype(InternalMemory.class, "InternalMemory")
+                .registerSubtype(Motherboard.class, "Motherboard")
+                .registerSubtype(PowerSupply.class, "PowerSupply")
+                .registerSubtype(Case.class, "Case");
 
         gson = new GsonBuilder().registerTypeAdapterFactory(itemRuntimeTypeAdapterFactory).create();
     }
@@ -112,6 +121,20 @@ public final class ComputerDBHandler extends SQLiteOpenHelper {
         }
         db.close();
         return new ArrayList<>(data);
+    }
+
+    // Find item by id
+    public Item findHandler(int id) {
+        String query = "Select * FROM " + TABLE_NAME + " WHERE " + Column.ID.name() + " = " + id;
+        SQLiteDatabase db = this.getWritableDatabase();
+        @SuppressLint("Recycle") Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            byte[] computerData_1 = cursor.getBlob(Column.COMPUTER_DATA.columnNumber);
+
+            return gson.fromJson(new String(computerData_1).trim(), Item.class);
+        }
+
+        throw new IllegalArgumentException("Id not found");
     }
 
     // Mark bookmark method

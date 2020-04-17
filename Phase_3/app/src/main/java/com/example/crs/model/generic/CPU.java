@@ -3,6 +3,8 @@ package com.example.crs.model.generic;
 import com.example.crs.model.item.Item;
 import com.example.crs.model.item.ItemType;
 
+import org.jetbrains.annotations.NotNull;
+
 public final class CPU extends Item {
     private SocketType socketType;
     private int numberOfCores;
@@ -79,22 +81,9 @@ public final class CPU extends Item {
         super.setItemType(itemType);
     }
 
+    @NotNull
     @Override
     public String toString() {
-        return "CPU{" +
-                "socketType=" + socketType +
-                ", numberOfCores=" + numberOfCores +
-                ", numberOfThreads=" + numberOfThreads +
-                ", thermalDesign=" + thermalDesign +
-                ", operatingFrequency=" + operatingFrequency +
-                ", maxTurboBoost=" + maxTurboBoost +
-                ", id=" + getId() +
-                ", name='" + getName() + '\'' +
-                ", model='" + getModel() + '\'' +
-                ", url='" + getUrl() + '\'' +
-                ", price=" + getPrice() +
-                ", itemType=" + getItemType() +
-                ", imageLink='" + getImageLink() + '\'' +
-                '}';
+        return getName();
     }
 }

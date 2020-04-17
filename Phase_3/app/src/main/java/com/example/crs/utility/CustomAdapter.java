@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.example.crs.R;
 import com.example.crs.activities.BookmarkActivity;
 import com.example.crs.database.ComputerDBHandler;
+import com.example.crs.model.desktop.DesktopItem;
 import com.example.crs.model.item.Item;
 
 import java.util.List;
@@ -71,15 +72,17 @@ public class CustomAdapter extends ArrayAdapter<Item> {
         // sets the product's price
         productPrice.setText(String.valueOf(item.getPrice()));
 
-        // Opens the item's website
-        view.findViewById(R.id.sourceimage).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Uri uri = Uri.parse(item.getUrl());
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                myContext.startActivity(intent);
-            }
-        });
+        // Opens the item's website if it is not a desktop item
+        if (!(item instanceof DesktopItem)) {
+            view.findViewById(R.id.sourceimage).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Uri uri = Uri.parse(item.getUrl());
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    myContext.startActivity(intent);
+                }
+            });
+        }
 
         /* If the bookmark icon is clicked and it's bookmarked sets the icon to its default state
          * and remove the mark from the database, and vice versa.
@@ -103,7 +106,12 @@ public class CustomAdapter extends ArrayAdapter<Item> {
                             ResourcesCompat.getDrawable(myContext.getResources(),
                                     R.drawable.inbookmark_ic, null);
 
-                    computerDBHandler.setBookmarked(item.getId());
+                    if (item instanceof DesktopItem) {
+                        computerDBHandler.addHandler(item);
+                        computerDBHandler.setBookmarked(item.getId());
+                    } else {
+                        computerDBHandler.setBookmarked(item.getId());
+                    }
                     bookmarkButton.setImageDrawable(drawable);
                 }
             }

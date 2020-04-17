@@ -3,7 +3,7 @@ package com.example.crs.model.laptop;
 public enum DisplayResolution {
     D1366x768, D1280x800, D1280x1024, D1400x1050, D1440x900, D1600x900, D1680x1050, D1600x1200,
     D1920x1080, D1920x1200, D2560x1440, D2560x1600, D2880x1800, D3800x1800, D3840x2160,
-    D4096x2160;
+    D4096x2160,D2160x1440;
 
     private static final int HD = 1920 * 1080;
 

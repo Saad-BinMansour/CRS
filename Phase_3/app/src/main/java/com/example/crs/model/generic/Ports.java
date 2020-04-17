@@ -13,7 +13,7 @@ public class Ports {
         Headset_AMP("Headset AMP"), Gold_Flash_jacks("Gold Flash jacks"),
         Headset_AMP_Gold_Flash_jacks("Headset AMP + Gold Flash jacks"), Thunderbolt_3("Thunderbolt 3"),
         Headphone_Microphone_Combo_Jack("Headphone/Microphone Combo Jack"), HDMI("HDMI"), USB_3_1_Type_C("USB 3.1 Type C"), USB_3_1_Type_A("USB 3.1 Type A"),
-        USB_3_0("USB 3.0"), USB_2_0("USB 2.0"), USB_3_1_Gen_1("USB 3.1 Gen 1");
+        USB_3_0("USB 3.0"), USB_2_0("USB 2.0"), USB_3_1_Gen_1("USB 3.1 Gen 1"), USB_3_1_Gen_1_Type_A("USB 3.1 Gen 1 Type-A");
 
         String name;
         PortType(String name) {
