@@ -158,7 +158,8 @@
             android:orientation="horizontal"
             android:paddingTop="25dp"
             android:paddingBottom="25dp"
-            android:background="@drawable/layout_stroke">
+            android:background="@drawable/layout_stroke"
+            android:onClick="ContactusBtn">
 
             <ImageView
                 android:layout_width="40dp"
@@ -189,7 +190,8 @@
             android:orientation="horizontal"
             android:paddingTop="25dp"
             android:paddingBottom="25dp"
-            android:background="@drawable/layout_stroke">
+            android:background="@drawable/layout_stroke"
+            android:onClick="FeedbackBtn">
 
             <ImageView
                 android:layout_width="40dp"
