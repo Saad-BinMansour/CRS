@@ -72,6 +72,7 @@ public class ResultActivity extends AppCompatActivity {
                     ids.add(desktopItem.getaCase().getId());
                     ids.add(desktopItem.getGpu().getId());
                     ids.add(desktopItem.getRam().getId());
+                    ids.add(desktopItem.getHdd().getId());
                     ids.add(desktopItem.getPowerSupply().getId());
                     ids.add(desktopItem.getMotherboard().getId());
                     intent1.putExtra("DesktopID", ids);

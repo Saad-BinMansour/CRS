@@ -54,8 +54,8 @@ public final class DesktopItem extends Item {
         return hdd;
     }
 
-    public void setHdd() {
-        this.hdd = new InternalMemory();
+    public void setHdd(InternalMemory hdd) {
+        this.hdd = hdd;
         this.hdd.setItemType(ItemType.HDD);
         setPrice(getPrice() + hdd.getPrice());
     }
@@ -93,6 +93,7 @@ public final class DesktopItem extends Item {
                 gpu.getName() + "\n" +
                 motherboard.getName() + "\n" +
                 ram.getName() + "\n" +
+                hdd.getName() + "\n" +
                 powerSupply.getName() + "\n" +
                 aCase.getName();
     }

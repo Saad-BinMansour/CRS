@@ -210,6 +210,8 @@ public final class ResultProcess {
             assert powerSupplyLinkedList.peekFirst() != null;
             desktopItem.setPowerSupply(powerSupplyLinkedList.peekFirst());
             desktopItem.setImageLink(Objects.requireNonNull(Objects.requireNonNull(formFactorCaseHashMap.get(motherboard.getFormFactor())).peekFirst()).getImageLink());
+            assert internalMemoryLinkedList.peekFirst() != null;
+            desktopItem.setHdd(internalMemoryLinkedList.peekFirst());
             desktopItem.setItemType(ItemType.DESKTOP);
             resultItems.add(desktopItem);
         }

@@ -56,17 +56,6 @@ public final class InternalMemory extends Item {
 
     @Override
     public String toString() {
-        return "InternalMemory{" +
-                "formFactor='" + formFactor + '\'' +
-                ", capacity=" + capacity +
-                ", amount=" + amount +
-                ", id=" + getId() +
-                ", name='" + getName() + '\'' +
-                ", model='" + getModel() + '\'' +
-                ", url='" + getUrl() + '\'' +
-                ", price=" + getPrice() +
-                ", itemType=" + getItemType() +
-                ", imageLink='" + getImageLink() + '\'' +
-                '}';
+        return getName();
     }
 }
